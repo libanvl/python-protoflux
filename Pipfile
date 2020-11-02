@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "*"
+isort = "*"
+flake8 = "*"
+nodeenv = "*"
+pytest = "*"
+pytest-cov = "*"
+pre-commit = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
+
+[scripts]
+pyright = "node node_modules/pyright"
+pre-commit-check = "pre-commit run --all-files"
+pytest = "python -m pytest"
+pytest-cov = "python -m pytest --cov"
