@@ -1,6 +1,6 @@
 [run]
-source = pkg
-omit = pkg/__main__.py
+source = protoflux
+omit = protoflux/__main__.py
 
 [report]
 exclude_lines =

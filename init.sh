@@ -1,5 +1,5 @@
 # Install dependencies
-pipenv install --dev
+pipenv install --deploy --dev
 
 # Install pyright type checker
 pipenv run nodeenv -p

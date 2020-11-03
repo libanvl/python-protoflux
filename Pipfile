@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+betterproto = {extras = ["compiler"], version = "*"}
 black = "*"
 isort = "*"
 flake8 = "*"
@@ -11,6 +12,10 @@ nodeenv = "*"
 pytest = "*"
 pytest-cov = "*"
 pre-commit = "*"
+
+[packages]
+grpclib = "*"
+betterproto = "*"
 
 [requires]
 python_version = "3.8"
@@ -23,3 +28,4 @@ pyright = "node node_modules/pyright"
 pre-commit-check = "pre-commit run --all-files"
 pytest = "python -m pytest"
 pytest-cov = "python -m pytest --cov"
+pkg = "python -m protoflux"
