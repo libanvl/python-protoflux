@@ -3,7 +3,7 @@ import contextlib
 import logging
 import os.path
 import tempfile
-import test.lib.routeguide as lib
+import test.gen.routeguide as rg
 from typing import Any, AsyncIterator
 
 from grpclib.server import Server
@@ -23,17 +23,17 @@ class RouteGuide:
         self.offset = offset
 
     @grpc_method
-    async def get_feature(self, request: lib.Point) -> lib.Feature:
-        return lib.Feature(
-            "Test", lib.Point(request.latitude + self.offset, request.longitude + self.offset)
+    async def get_feature(self, request: rg.Point) -> rg.Feature:
+        return rg.Feature(
+            "Test", rg.Point(request.latitude + self.offset, request.longitude + self.offset)
         )
 
     @grpc_method
     @grpc_name("ListFeatures")
-    async def list_f(self, request: lib.Rectangle) -> AsyncIterator[lib.Feature]:
+    async def list_f(self, request: rg.Rectangle) -> AsyncIterator[rg.Feature]:
         for lat in range(request.lo.latitude, request.hi.latitude):
-            yield lib.Feature(
-                "Test2", lib.Point(lat + self.offset, request.lo.longitude + self.offset)
+            yield rg.Feature(
+                "Test2", rg.Point(lat + self.offset, request.lo.longitude + self.offset)
             )
 
 

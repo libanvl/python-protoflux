@@ -1,7 +1,7 @@
 import logging
 import os
 import tempfile
-import test.lib.routeguide as rg
+import test.gen.routeguide as rg
 import test.routeguide.server as rgserver
 from typing import List
 
