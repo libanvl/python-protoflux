@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-betterproto = {extras = ["compiler"], version = "*"}
+betterproto = {path = "./ext/python-betterproto", extras="compiler"}
 black = "*"
 isort = "*"
 flake8 = "*"
@@ -12,10 +12,11 @@ nodeenv = "*"
 pytest = "*"
 pytest-cov = "*"
 pre-commit = "*"
+pytest-asyncio = "*"
 
 [packages]
 grpclib = "*"
-betterproto = "*"
+betterproto = {path = "./ext/python-betterproto"}
 
 [requires]
 python_version = "3.8"
@@ -26,6 +27,7 @@ allow_prereleases = true
 [scripts]
 pyright = "node node_modules/pyright"
 pre-commit-check = "pre-commit run --all-files"
-pytest = "python -m pytest"
+pytest = "python -u -m pytest"
 pytest-cov = "python -m pytest --cov"
 pkg = "python -m protoflux"
+protoc = "protoc -I ./proto/ --python_betterproto_out=lib" # takes input file as a parameter

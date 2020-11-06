@@ -1,4 +1,5 @@
 .vscode/settings.json
+ext/*
 
 # nodeenv
 node_modules/

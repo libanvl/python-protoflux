@@ -36,7 +36,7 @@ def grpc_name(rpc_name: str) -> Callable[[_V], _V]:
     return _wrapper
 
 
-def grpc_handler(func: AnyHandler[_S, T, U]) -> AnyHandler[_S, T, U]:
+def grpc_method(func: AnyHandler[_S, T, U]) -> AnyHandler[_S, T, U]:
     """Wraps the function for use as a grpclib Handler.
 
     By default, the rpc name is the function name transformed to title case.
@@ -60,7 +60,7 @@ def grpc_handler(func: AnyHandler[_S, T, U]) -> AnyHandler[_S, T, U]:
         rpc_name = func.__name__.replace("_", " ").title().replace(" ", "")
 
     func.__rpc_name__ = rpc_name
-    func.__rpc_call__ = functools.update_wrapper(call, func)
+    func.__rpc_call__ = call
     func.__rpc_req_t__ = (
         request_t if not cardinality.client_streaming else get_args(request_t)[0]  # type:ignore
     )
@@ -89,7 +89,7 @@ class Servicer(Protocol):
     def __mapping__(self):
         return {
             f"/{self.__rpc_name__}/{method.__rpc_name__}": grpclib.const.Handler(
-                method.__rpc_call__,
+                functools.partial(method.__rpc_call__, self),
                 method.__rpc_cardinality__,
                 method.__rpc_req_t__,
                 method.__rpc_res_t__,

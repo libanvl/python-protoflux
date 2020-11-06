@@ -39,17 +39,17 @@ service RouteGuide {
   // huge number of features.
   rpc ListFeatures(Rectangle) returns (stream Feature) {}
 
-//   // A client-to-server streaming RPC.
-//   //
-//   // Accepts a stream of Points on a route being traversed, returning a
-//   // RouteSummary when traversal is completed.
-//   rpc RecordRoute(stream Point) returns (RouteSummary) {}
+  // A client-to-server streaming RPC.
+  //
+  // Accepts a stream of Points on a route being traversed, returning a
+  // RouteSummary when traversal is completed.
+  rpc RecordRoute(stream Point) returns (RouteSummary) {}
 
-//   // A Bidirectional streaming RPC.
-//   //
-//   // Accepts a stream of RouteNotes sent while a route is being traversed,
-//   // while receiving other RouteNotes (e.g. from other users).
-//   rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+  // A Bidirectional streaming RPC.
+  //
+  // Accepts a stream of RouteNotes sent while a route is being traversed,
+  // while receiving other RouteNotes (e.g. from other users).
+  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
 }
 
 // Points are represented as latitude-longitude pairs in the E7 representation

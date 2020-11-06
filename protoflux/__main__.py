@@ -5,7 +5,7 @@ def main():
     import betterproto
     import grpclib.server
 
-    from protoflux.servicer import Servicer, grpc_handler, grpc_name, grpc_service
+    from protoflux.servicer import Servicer, grpc_method, grpc_name, grpc_service
 
     class Req(betterproto.Message):
         pass
@@ -19,16 +19,16 @@ def main():
             self.rank = rank
             self.name = name
 
-        @grpc_handler
+        @grpc_method
         async def one(self, request: Req) -> Res:
             return Res()
 
-        @grpc_handler
+        @grpc_method
         async def two_for_one(self, request: Req) -> AsyncIterator[Res]:
             yield Res()
 
         @grpc_name("FiveSix")
-        @grpc_handler
+        @grpc_method
         async def three(self, request: AsyncIterable[Req]) -> AsyncIterator[Res]:
             async for _ in request:
                 yield Res()
@@ -39,15 +39,15 @@ def main():
             self.rank = rank
             self.name = name
 
-        @grpc_handler
+        @grpc_method
         async def one(self, request: Req) -> Res:
             return Res()
 
-        @grpc_handler
+        @grpc_method
         async def two_for_one(self, request: Req) -> AsyncIterator[Res]:
             yield Res()
 
-        @grpc_handler
+        @grpc_method
         @grpc_name("FiveSix")
         async def three(self, request: AsyncIterable[Req]) -> AsyncIterator[Res]:
             async for _ in request:

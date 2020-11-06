@@ -1,0 +1,3 @@
+[submodule "ext/python-betterproto"]
+	path = ext/python-betterproto
+	url = https://github.com/danielgtaylor/python-betterproto
